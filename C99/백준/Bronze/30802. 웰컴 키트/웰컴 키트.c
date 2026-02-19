@@ -1,22 +1,27 @@
-#include<stdio.h>
-int main(void){
-	int n, size[6], t, p;
-	int x = 0;
-	scanf("%d", &n);
-	for(int i=0; i < 6; i++)
-	{
-		scanf("%d", &size[i]);
-	}
-	scanf("%d %d", &t, &p);
-	
-	for(int i=0; i < 6; i++)
-	{
-		if(0 < size[i] && size[i] < t) x++;
-		else if(size[i] == t || size[i]%t == 0) x += (size[i]/t);
-		else if(size[i] > t) x += (size[i]/t+1);
-	}
-	printf("%d\n", x);
-	printf("%d %d", (n/p), (n%p));
-	
-	return 0;
+#include <stdio.h>
+
+int main() {
+  int N;
+  int size[6];
+  int T, P;
+  int Shirt_Bundle = 0;
+  int Pen_Bundle1, Pen_Bundle2;
+
+  scanf("%d", &N);
+  scanf("%d %d %d %d %d %d", &size[0], &size[1], &size[2], &size[3], &size[4],
+        &size[5]);
+  scanf("%d %d", &T, &P);
+
+  // Shirt Bundles
+  for (int i = 0; i < 6; i++) {
+    Shirt_Bundle += (size[i] / T);
+    if (size[i] % T > 0)
+      Shirt_Bundle++;
+  }
+
+  // Pen Bundles
+  Pen_Bundle1 = N / P;
+  Pen_Bundle2 = N % P;
+
+  printf("%d\n%d %d", Shirt_Bundle, Pen_Bundle1, Pen_Bundle2);
 }
